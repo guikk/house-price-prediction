@@ -8,6 +8,6 @@ def get_input(attributes):
     df = pd.read_csv('./data/house_prices_train.csv')
     y = np.array(df['SalePrice'])
     x = np.array(
-        [ min_max_scale(df[a]) for a in attributes]
+        [min_max_scale(df[a]) for a in attributes]
     )
     return x,y
