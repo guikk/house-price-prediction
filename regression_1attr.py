@@ -1,9 +1,15 @@
 import numpy as np
+import sys
 from util import get_input
 
 def main():
-    x,y = get_input(['GrLivArea'])
-    theta, cost_graph, theta_progress = gradient_descent(x, y, learning_rate=1e-7, num_iterations=10)
+    try:
+        input_file = sys.argv[1]
+        n = int(sys.argv[2])
+    except:
+        raise Exception(f'Wrong input format: {sys.argv} (expected 3)')
+    x,y = get_input(input_file,['GrLivArea'])
+    theta, cost_graph, theta_progress = gradient_descent(x, y, learning_rate=1e-7, num_iterations=n)
     print(f"theta_0: {theta[0]}")
     print(f"theta_1: {theta[1]}")
     print(f"Erro quadratico medio: {cost_graph[-1]}")
