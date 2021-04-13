@@ -1,12 +1,13 @@
 import numpy as np
+import pandas as pd
 
-def min_max_scaling(array: np.ndarray) -> np.ndarray:
+def min_max_scale(array):
     return (array - array.min())/(array.max() - array.min())
 
-def compute_cost_linear(w, x, y):
-
-    estimate = x*w[1] + w[0]
-    quad_error = np.power(estimate-y, 2)
-    mean = np.sum(quad_error)/x.size
-
-    return mean
+def get_input(attributes):
+    df = pd.read_csv('./data/house_prices_train.csv')
+    y = np.array(df['SalePrice'])
+    x = np.array(
+        [ min_max_scale(df[a]) for a in attributes]
+    )
+    return x,y
